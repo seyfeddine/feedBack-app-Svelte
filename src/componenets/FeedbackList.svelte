@@ -6,5 +6,5 @@ console.log(feedback);
 
 
 {#each feedback as fb (fb.id)}
-<FeedbackItem item={fb}/>
+<FeedbackItem item={fb} on:delte-feed/>
 {/each}
