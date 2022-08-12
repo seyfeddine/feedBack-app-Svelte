@@ -2,6 +2,7 @@
 <script>
 import FeedbackList from './componenets/FeedbackList.svelte'
 import FeedbackStats from './componenets/FeedbackStats.svelte'
+import FeedbackForm from './componenets/FeedbackForm.svelte'
 
 let feedback = 
 	[
@@ -22,18 +23,19 @@ let feedback =
   },
 ]
 
-$: count = feedback.length
-$: average = feedback.reduce((a, {rating})=> a + rating, 0 )/count
 
- const deleteFeed = (e) =>{
-	const itemId = e.detail 
-	feedback = feedback.filter((item)=> item.id != itemId )
+
+ 
+ const addFeedback = (e) => {
+  const newFeedback = e.detail
+  feedback = [newFeedback, ...feedback]
  }
 </script>
 
 <main class="container">
-		<FeedbackStats	{count} {average}/>
-	<FeedbackList feedback={feedback} on:delte-feed={deleteFeed}/>
+	<FeedbackForm on:add-feedback={addFeedback}/>
+	<FeedbackStats/>
+	<FeedbackList />
 	
 </main>
 
